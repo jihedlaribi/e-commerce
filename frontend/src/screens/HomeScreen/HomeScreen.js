@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../../components/Navbar/Navbar'
 import SideDrawer from '../../components/SideDrawer/SideDrawer'
 import Backdrop from '../../components/backdrop/Backdrop'
+import { MDBSpinner } from 'mdb-react-ui-kit';
+import { Redirect } from 'react-router'
 const HomeScreen = () => {
 
     const dispatch = useDispatch();
@@ -18,18 +20,27 @@ const HomeScreen = () => {
     }, [dispatch]);
     const [search, setSearch] = useState("");
     
+    const {token} = useSelector(state=>state.useReducer)
     const [sideToggle, setsideToggle] = useState(false)
     return (
         <div>
+        
+                  
+                   
             <Navbar click={()=>setsideToggle(true)}/>
        <SideDrawer show={sideToggle} click={()=>setsideToggle(false)}/>
        <Backdrop show={sideToggle} click={()=>setsideToggle(false)}/>
+       {loading ? (   <MDBSpinner grow className='mx-2  d-flex justify-content-center' color='secondary'>
+        <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner>): !token  ? <Redirect to="/" /> : (
+           <>
         <div className="homescreen">
+       
             <h2 className="homescreen__title">Latest Products</h2>
 
-            <div>
+            <div >
 
-            <Form className="d-flex ">
+            <Form className="d-flex   col-md-4 " style={{margin:"auto"}}>
       <FormControl
          onChange={e=>{setSearch(e.target.value)}}
          value={search}
@@ -43,7 +54,9 @@ const HomeScreen = () => {
     </Form>
             <div className="homescreen__products">
                 
-                {loading ? <h1>loading...</h1> : error ? <h1>{error}</h1> : products .filter(
+                {loading ?    <MDBSpinner grow className='mx-2' color='secondary'>
+        <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner> : error ? <h1>{error}</h1> : products .filter(
             (el) =>
               el.name.toUpperCase().includes(search.toUpperCase())).map((product) =>
                   
@@ -58,11 +71,12 @@ const HomeScreen = () => {
                     
                     
                     
-                    />)}
+               />    )}
             </div>
             </div>
             
         </div>
+        </> )}
         </div>
     )
 }

@@ -6,6 +6,7 @@ import { loginUser } from '../../redux/actions/useAction';
 import { useSelector } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import './login.css'
+import { MDBSpinner } from 'mdb-react-ui-kit';
 
 
 const LogIn = () => {
@@ -27,7 +28,9 @@ const LogIn = () => {
             <div className='col-md-3 m-auto '>
                 <h1 className='d-flex justify-content-center border'>Log in</h1>
 
-                {loading ? ( <h1>loading ...</h1> ): token ? <Redirect to="/homescreen" /> : (
+                {loading ? (  <MDBSpinner grow className='mx-2' color='secondary'>
+        <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner>): token ? <Redirect to="/homescreen" /> : (
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>

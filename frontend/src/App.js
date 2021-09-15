@@ -11,9 +11,13 @@ import SignUp from './components/Signup/signup';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LogIn from './components/login/login';
+import checkout from './components/CheckOut/checkout';
+import AdminScreen from './Admincomponents/AdminScreen/AdminScreen';
+import Contact from './components/contact/Contact';
 
 
 function App() {
+ 
 
   return (
     <div className="app">
@@ -22,7 +26,8 @@ function App() {
        
     <main>
 <Switch>
- 
+<Route exact path='/contact' component={Contact}/>
+ <Route exact path='/Admin' component={AdminScreen}/>
 <Route exact path='/homescreen' component={HomeScreen } />
 <Route exact path='/product/:id' component={ProductsScreen}  />
 <Route exact path='/cart' component={CardScreen}   />
@@ -30,7 +35,7 @@ function App() {
 <Route exact path='/signup' component={SignUp}/>
 
 <Route exact path='/' component={LogIn}/>
-
+<Route exact path='/checkout' component={checkout}/>
 </Switch>
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../Navbar/Navbar.css'
 import {Link}  from 'react-router-dom'
 import {
@@ -7,6 +7,7 @@ import {
 } from "react-redux";
 
 import { logout } from '../../redux/actions/useAction';
+import { getUser } from '../../redux/actions/crudAction';
 const Navbar = ({click}) => {
 
   const cart =useSelector(state => state.cart)
@@ -16,7 +17,11 @@ const Navbar = ({click}) => {
   };
  
   const dispatch = useDispatch()
+ 
 
+
+ const { token, loading } = useSelector(state => state.useReducer)
+ 
     return (
       
         <nav className="navbar">
@@ -34,20 +39,35 @@ const Navbar = ({click}) => {
               </span>
             </Link>
           </li>
+       {/*   <li> {users.fullName} </li> */}
          
             
                <li>
             <Link to="/homescreen">Shop</Link>
           </li>
-        
+        { token.user.role !== 1 ?  <li> </li> :  <li>
+            <Link to="/Admin" >Admin</Link>
+          </li>}
+         
         
           <li onClick={() => dispatch(logout())}> 
           <Link to="/">
              
                 Logout
-                <i className="fas fa-sign-out-alt"></i> 
+              
              
             </Link></li>
+    <li>     <Link to="/contact">
+             
+             Contact
+           
+          
+         </Link> </li>
+
+
+
+
+            <li> Name: {token.user.fullName}  </li>
         </ul>
   
         <div className="hamburger__menu"  onClick={click}>

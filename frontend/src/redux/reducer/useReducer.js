@@ -7,7 +7,9 @@ const initialState ={
     loading:false,
     token:null,
     users:[],
-    errors:null
+    errors:null,
+    isAuth:false,
+   
 
 }
 

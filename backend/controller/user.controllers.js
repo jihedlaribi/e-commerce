@@ -9,12 +9,12 @@ const secret = process.env.secret
 
 
 exports.register = async (req, res) => {
-    const { fullName, email, password, age } = req.body
+    const { fullName, email, password, age,role } = req.body
     try {
         let existantUser = await User.findOne({ email })
         if (existantUser) return res.send('user already exists')
         const newUser = new User({
-            fullName, email, password, age
+            fullName, email, password, age,role
         })
         var salt = await bcrypt.genSalt(10);
         var hash = await bcrypt.hash(password, salt);
@@ -29,7 +29,8 @@ exports.register = async (req, res) => {
                 _id: newUser._id,
                 fullName: newUser.fullName,
                 email: newUser.email,
-                age: newUser.age
+                age: newUser.age,
+                role:newUser.role
             }
         })
     } catch (error) {
@@ -52,7 +53,9 @@ exports.login = async (req, res) => {
                 _id: existantUser._id,
                 fullName: existantUser.fullName,
                 email: existantUser.email,
-                age: existantUser.age
+                age: existantUser.age,
+                role:existantUser.role
+
             }
         })
     } catch (error) {

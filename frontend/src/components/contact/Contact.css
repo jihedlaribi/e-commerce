@@ -1,0 +1,108 @@
+.backgound{
+
+    background-image: url('https://www.informatique-store.com/wp-content/uploads/2020/12/home-office-5190614_1280-1024x641.jpg');
+    background-size: cover;
+    height: 200vh;
+}
+
+
+.contact{
+    width: 60%;
+    height: 700px;
+    background:rgba(255,255,255,0.623);
+    position: relative;
+    margin: 6rem 18rem 5rem;
+    border-radius: 0 70px;
+  
+}
+.contact p{
+
+background-color: black;
+margin: 60px 20px;
+font-size: large;
+color: blanchedalmond;
+}
+.title{
+font-family: 'Indie Flower', cursive;
+}
+
+.wrapper{
+position: absolute;
+display: flex;
+bottom: 2rem;
+left: 13rem;
+}
+.wrapper .icon{
+position: relative ;
+background-color: #ffffff;
+border-radius: 50%;
+padding: 15px;
+margin: 10px;
+width: 50px;
+font-size: 18px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+box-shadow: 2px 6px 14px 3px #000000;
+cursor: pointer;
+transition: all 0.2s cubic-bezier(0.68 ,-0.55,0.265,1.55);
+}
+.wrapper .tooltip{
+position: absolute;
+top: 0;
+font-size: 14px;
+background-color: #ffffff;
+color: #ffffff;
+padding: 5px 8px;
+border-radius: 5px;
+box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+opacity: 0;
+pointer-events: none;
+transition: all 0.3s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.wrapper .tooltip::before{
+position: absolute;
+content:"";
+height: 8px;
+background-color: #ffffff;
+bottom: -3px;
+left: 50%;
+transform: translate(-50%) rotate(45deg);
+transition: all 0.3s cubic-bezier(0.68,-0.55,0.265,1.55);
+}
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before{background-color: #0088cc;
+color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before{background-color: #de463b;
+color: #ffffff;
+}
+
+.wrapper .linkedin:hover,
+.wrapper .linkedin:hover .tooltip,
+.wrapper .linkedin:hover .tooltip::before{background-color: #0e76a8;
+color: #ffffff;
+}
+
+.wrapper .icon:hover .tooltip{
+top:-45px;
+opacity: 1;
+visibility: visible;
+pointer-events: auto;
+}
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+text-shadow: 0px -1px 0px rgba(0,0, 0, 0.1);
+}
+
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before{background-color: #e1306c;
+color: #ffffff;
+}

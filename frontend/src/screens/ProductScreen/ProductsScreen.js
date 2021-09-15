@@ -5,6 +5,11 @@ import { useDispatch,useSelector } from 'react-redux'
 //actions
 import { getProductDetails as details } from '../../redux/actions/productAction'
 import { addToCart } from '../../redux/actions/cartAction'
+import { ProgressBar } from 'react-bootstrap'
+import { MDBSpinner } from 'mdb-react-ui-kit';
+import Navbar from '../../components/Navbar/Navbar'
+import SideDrawer from '../../components/SideDrawer/SideDrawer'
+import Backdrop from '../../components/backdrop/Backdrop'
 const ProductsScreen = ({match, history}) => {
 const [qty, setQty] = useState(1);
 const dispatch = useDispatch();
@@ -20,22 +25,31 @@ useEffect(() => {
     dispatch(addToCart(product._id, qty));
     history.push(`/cart`);
   };
+  const [sideToggle, setsideToggle] = useState(false)
     return (
-       <div className="productscreen">
+      <div>
       {loading ? (
-        <h2>Loading...</h2>
+        <MDBSpinner grow className='mx-2' color='secondary'>
+        <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner>
       ) : error ? (
         <h2>{error}</h2>
       ) : (
         <>
+                 <Navbar click={()=>setsideToggle(true)}/>
+       <SideDrawer show={sideToggle} click={()=>setsideToggle(false)}/>
+       <Backdrop show={sideToggle} click={()=>setsideToggle(false)}/>
+        <div className="productscreen">
+       
         
           <div className="productscreen__left">
             <div className="left__image">
-              <img src={product.imageUrl} alt={product.name} />
+              
+              <img style={{width:"50%"}} src={product.imageUrl} alt={product.name} />
             </div>
             <div className="left__info">
               <p className="left__name">{product.name}</p>
-              <p>Price: ${product.price}</p>
+              <p>Price:${product.price}</p>
               <p>Description: {product.description}</p>
             </div>
           </div>
@@ -66,11 +80,14 @@ useEffect(() => {
                   Add To Cart
                 </button>
               </p>
+              <ProgressBar animated now={45} />
             </div>
-          </div>
-        </>
+              </div> 
+       
+         </div></>
       )}
     </div>
+   
   );
 };
 

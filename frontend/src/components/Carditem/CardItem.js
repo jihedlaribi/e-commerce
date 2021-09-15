@@ -3,6 +3,7 @@ import { Link,Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
+  // console.log(item)
   const {token,loading } = useSelector(state => state.useReducer)
   return (
     <div className="cartitem">

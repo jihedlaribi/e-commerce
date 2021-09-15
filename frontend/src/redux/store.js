@@ -3,8 +3,9 @@ import{ cartReducer} from './reducer/cartReducer'
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import { getProductDetailsReducer, getProductsReducer } from "./reducer/productReducer";
+import crud from "./reducer/crudReducer";
 
-const routReducer = combineReducers({useReducer,  cart: cartReducer,
+const routReducer = combineReducers({useReducer,crud ,  cart: cartReducer,
   getProducts: getProductsReducer,
   getProductDetails: getProductDetailsReducer});
 const devtool= window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

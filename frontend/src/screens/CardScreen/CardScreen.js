@@ -2,7 +2,7 @@ import "./CardScreen.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { ProgressBar } from "react-bootstrap";
 // Components
 import CartItem from "../../components/Carditem/CardItem";
 import Navbar from '../../components/Navbar/Navbar'
@@ -12,14 +12,15 @@ import Backdrop from '../../components/backdrop/Backdrop'
 // Actions
 import { addToCart, removeFromCart } from "../../redux/actions/cartAction";
 
+
 const CartScreen = () => {
   const [sideToggle, setsideToggle] = useState(false)
   const dispatch = useDispatch();
-
+  const { token } = useSelector(state => state.useReducer)
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(addToCart(id, qty));
@@ -37,13 +38,15 @@ const CartScreen = () => {
     return cartItems
       .reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
+
   };
+
 
   return (
     <>
-         <Navbar click={()=>setsideToggle(true)}/>
-       <SideDrawer show={sideToggle} click={()=>setsideToggle(false)}/>
-       <Backdrop show={sideToggle} click={()=>setsideToggle(false)}/>
+      <Navbar click={() => setsideToggle(true)} />
+      <SideDrawer show={sideToggle} click={() => setsideToggle(false)} />
+      <Backdrop show={sideToggle} click={() => setsideToggle(false)} />
       <div className="cartscreen">
         <div className="cartscreen__left">
           <h2>Shopping Cart</h2>
@@ -62,6 +65,7 @@ const CartScreen = () => {
               />
             ))
           )}
+          {console.log(cartItems)}
         </div>
 
         <div className="cartscreen__right">
@@ -70,8 +74,13 @@ const CartScreen = () => {
             <p>${getCartSubTotal()}</p>
           </div>
           <div>
-            <button>Proceed To Checkout</button>
+            <Link to='/checkout'>
+
+              <button onClick={() => alert(`order sucsses ${token.user.fullName}`)}>Proceed To Checkout</button>
+            </Link>
+          
           </div>
+          <ProgressBar animated now={80} />
         </div>
       </div>
     </>
