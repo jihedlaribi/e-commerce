@@ -1,13 +1,16 @@
 import "./CardItem.css";
 import { Link,Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { MDBSpinner } from "mdb-react-ui-kit";
 
 const CartItem = ({ item, qtyChangeHandler, removeHandler }) => {
   // console.log(item)
   const {token,loading } = useSelector(state => state.useReducer)
   return (
     <div className="cartitem">
-      {loading ? <h1>loading</h1> : !token ? <Redirect to='/'/> :(
+      {loading ?  <MDBSpinner grow className='mx-2' color='secondary'>
+        <span className='visually-hidden'>Loading...</span>
+      </MDBSpinner> : !token ? <Redirect to='/'/> :(
         <>
       <div className="cartitem__image">
         <img src={item.imageUrl} alt={item.name} />

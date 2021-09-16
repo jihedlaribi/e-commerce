@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../../redux/actions/useAction';
@@ -16,6 +16,8 @@ const SideDrawer = ({show,click}) => {
         sidedrawerclass.push('show');
     }
     const dispatch = useDispatch()
+    
+  const { token } = useSelector(state => state.useReducer)
     return (
         <div className={sidedrawerclass.join(' ')}>
              <ul className="sidedrawer__links" onClick={click}>
@@ -32,16 +34,18 @@ const SideDrawer = ({show,click}) => {
           <Link to="/homescreen">Shop</Link>
         </li>
       
-          
+        <li>     <Link to="/contact">
+   Contact
+</Link> </li>
+{token.user.role !== 1 ? <li> </li> : <li>
+          <Link to="/Admin" >Admin</Link>
+        </li>}
           <li onClick={() => dispatch(logout())}>
+
           <Link to="/">
-           
-                
-              
-                Logout
-                <i style={{padding:'10px'}} className="fas fa-sign-out-alt"></i> 
-           
+               Logout
             </Link></li>
+            <li style={{display:"flex",flexDirection:"row"}}><i class="fas fa-user"></i> <span>  {token.user.fullName} </span> </li>
 </ul>
         </div>
     )
