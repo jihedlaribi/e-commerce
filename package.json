@@ -1,11 +1,12 @@
 {
-  
+  "homepage": "https://jihedlaribi.github.io/e-commerce",
   "name": "e-commerce",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
