@@ -1,9 +1,11 @@
 {
+  
   "name": "e-commerce",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
@@ -25,6 +27,7 @@
     "react-datepicker": "^4.2.1"
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "nodemon": "^2.0.12"
   }
 }
